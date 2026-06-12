@@ -124,7 +124,25 @@ const content = {
       emailLabel: "Email Somiya El Mimouni",
       emailText: "testtest@example.com"
     }
-  }
+  },
+  socials: [
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/"
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/"
+    },
+    {
+      label: "Email",
+      href: "mailto:testtest@example.com"
+    },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/"
+    }
+  ]
 };
 
 function App() {
@@ -221,17 +239,33 @@ function App() {
         <TextSection id="ai" heading={t.sections.ai.heading} text={t.sections.ai.text} />
 
         <section id="contact" className="section contact-section" aria-labelledby="contact-title">
-          <div>
+          <div className="contact-intro">
             <h2 id="contact-title">{t.sections.contact.heading}</h2>
-            <p>{t.sections.contact.text}</p>
           </div>
-          <a className="button button-primary" href="mailto:hello@example.com" aria-label={t.sections.contact.emailLabel}>
-            {t.sections.contact.emailText}
-          </a>
+          <div className="contact-content">
+            <p>{t.sections.contact.text}</p>
+            <a
+              className="button button-primary contact-button"
+              href={`mailto:${t.sections.contact.emailText}`}
+              aria-label={t.sections.contact.emailLabel}
+            >
+              Contact me
+            </a>
+          </div>
         </section>
       </main>
 
-      <footer className="site-footer">
+      <footer className="site-footer" aria-labelledby="social-title">
+        <nav className="social-links" aria-label="Social links">
+          <h2 id="social-title">Social links</h2>
+          <ul>
+            {t.socials.map((social) => (
+              <li key={social.label}>
+                <a href={social.href}>{social.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <p>&copy; {new Date().getFullYear()} Somiya El Mimouni</p>
       </footer>
     </>
